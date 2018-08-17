@@ -60,7 +60,7 @@ export default class BaseButton extends Component<
 
 const styles = StyleSheet.create({
   button: {
-    padding: 10,
+    flexGrow: 1,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center"

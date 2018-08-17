@@ -28,20 +28,24 @@ export default class AnimatedLoadingButton extends Component<Props> {
   render() {
     const { isLoading, renderButton, renderLoading } = this.props;
     const animationState: AnimationState = isLoading ? "loading" : "default";
-    return (
-      <View
-        style={{
-          alignItems: "center",
-          justifyContent: "center"
-        }}
-      >
-        <ButtonWrapper pose={animationState}>{renderButton()}</ButtonWrapper>
-        <View style={{ position: "absolute" }} pointerEvents="none">
-          <LoadingWrapper pose={animationState}>
-            {renderLoading()}
-          </LoadingWrapper>
-        </View>
-      </View>
-    );
+    return isLoading ? renderLoading() : renderButton()
+    // return (
+    //   <View
+    //     style={{
+    //       alignItems: "center",
+    //       justifyContent: "center",
+    //       flex: 1
+    //     }}
+    //   >
+    //     <View style={{ flexDirection: "row", flexGrow: 1 }}>
+    //       <ButtonWrapper pose={animationState}>{renderButton()}</ButtonWrapper>
+    //     </View>
+    //     <View style={{ position: "absolute" }} pointerEvents="none">
+    //       <LoadingWrapper pose={animationState}>
+    //         {renderLoading()}
+    //       </LoadingWrapper>
+    //     </View>
+    //   </View>
+    // );
   }
 }

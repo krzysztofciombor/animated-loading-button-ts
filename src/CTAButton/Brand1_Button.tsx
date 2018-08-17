@@ -2,6 +2,8 @@ import React from "react";
 import { Text, StyleSheet } from "react-native";
 
 import BaseButton from "src/common/BaseButton";
+import { getBrandedStyle } from "src/common/brandedStyles";
+import { Brand } from "src/Brands";
 import { Props } from "./props";
 
 export const Brand1_Button: React.SFC<Props> = props => (
@@ -18,8 +20,10 @@ export const Brand1_Button: React.SFC<Props> = props => (
 
 const styles = StyleSheet.create({
   base: {
-    borderRadius: 2,
-    backgroundColor: "lightseagreen"
+    backgroundColor: "lightseagreen",
+    paddingVertical: 8,
+    paddingHorizontal: 20,
+    borderRadius: getBrandedStyle(Brand.Brand1, "borderRadius")
   },
   pressed: {
     backgroundColor: "green"
@@ -28,6 +32,8 @@ const styles = StyleSheet.create({
     backgroundColor: "lightblue"
   },
   text: {
-    color: "white"
+    color: "white",
+    fontWeight: "600",
+    fontSize: 16
   }
 });

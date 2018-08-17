@@ -15,10 +15,10 @@ export const Brand2_Button: React.SFC<Props> = props => (
 
 const styles = StyleSheet.create({
   base: {
-    borderRadius: 0,
     borderColor: "blue",
-    borderWidth: 2,
-    backgroundColor: "white"
+    borderWidth: 1,
+    backgroundColor: "white",
+    padding: 10
   },
   text: {
     color: "blue",

@@ -16,8 +16,9 @@ export const Brand2_Button: React.SFC<Props> = props => (
 
 const styles = StyleSheet.create({
   base: {
-    borderRadius: 0,
-    backgroundColor: "black"
+    backgroundColor: "black",
+    paddingVertical: 10,
+    paddingHorizontal: 20
   },
   disabled: {
     backgroundColor: "silver"

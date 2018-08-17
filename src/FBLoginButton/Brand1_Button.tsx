@@ -3,6 +3,8 @@ import { Text, StyleSheet, View } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 
 import BaseButton from "src/common/BaseButton";
+import { getBrandedStyle } from "src/common/brandedStyles";
+import { Brand } from "src/Brands";
 import { Props } from "./props";
 
 export const Brand1_Button: React.SFC<Props> = props => (
@@ -12,20 +14,24 @@ export const Brand1_Button: React.SFC<Props> = props => (
     {...props}
   >
     <FontAwesome name="facebook-official" color="white" size={24} />
-    <View style={{ width: 16 }} />
+    <View style={{ flex: 1 }} />
     <Text style={styles.text}>Sign in with Facebook</Text>
+    <View style={{ flex: 1 }} />
   </BaseButton>
 );
 
 const styles = StyleSheet.create({
   base: {
-    borderRadius: 2,
-    backgroundColor: "blue"
+    backgroundColor: "blue",
+    padding: 10,
+    borderRadius: getBrandedStyle(Brand.Brand1, "borderRadius")
   },
   disabled: {
     backgroundColor: "lightblue"
   },
   text: {
-    color: "white"
+    color: "white",
+    fontSize: 16,
+    fontWeight: "600"
   }
 });
