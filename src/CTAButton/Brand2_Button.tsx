@@ -1,17 +1,26 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { Text, StyleSheet } from "react-native";
+
+import BaseButton from "src/common/BaseButton";
 import { Props } from "./props";
 
-export const Brand2_Button: React.SFC<Props> = () => (
-  <View style={styles.button}>
-    <Text style={styles.text}>SIGN IN</Text>
-  </View>
+export const Brand2_Button: React.SFC<Props> = props => (
+  <BaseButton
+    baseStyle={styles.base}
+    disabledStyle={styles.disabled}
+    {...props}
+  >
+    <Text style={styles.text}>{props.label.toUpperCase()}</Text>
+  </BaseButton>
 );
 
 const styles = StyleSheet.create({
-  button: {
-    backgroundColor: "black",
-    padding: 10
+  base: {
+    borderRadius: 0,
+    backgroundColor: "black"
+  },
+  disabled: {
+    backgroundColor: "silver"
   },
   text: {
     color: "white",

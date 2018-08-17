@@ -2,7 +2,8 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 
 import AnimatedLoadingButton from "src/AnimatedLoadingButton";
-import BrandedButton from "src/CTAButton";
+import BrandedCTAButton from "src/CTAButton";
+import BrandedFBLoginButton from "src/FBLoginButton";
 import BrandedLoadingIndicator from "src/LoadingIndicator";
 
 interface State {
@@ -27,7 +28,7 @@ export default class App extends React.Component<{}, State> {
   };
 
   renderButton = () => {
-    return <BrandedButton onPress={this.onButtonPress} />;
+    return <BrandedCTAButton onPress={this.onButtonPress} label="Sign In" />;
   };
 
   renderLoading = () => {
@@ -37,12 +38,17 @@ export default class App extends React.Component<{}, State> {
   render() {
     return (
       <View style={styles.container}>
-        <AnimatedLoadingButton
-          onPress={this.onButtonPress}
-          isLoading={this.state.isLoading}
-          renderButton={this.renderButton}
-          renderLoading={this.renderLoading}
-        />
+        <View style={styles.row}>
+          <AnimatedLoadingButton
+            isLoading={this.state.isLoading}
+            renderButton={this.renderButton}
+            renderLoading={this.renderLoading}
+          />
+        </View>
+        <View style={{ height: 15 }} />
+        <View style={styles.row}>
+          <BrandedFBLoginButton onPress={() => null} />
+        </View>
       </View>
     );
   }
@@ -54,5 +60,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center"
+  },
+  row: {
+    flexDirection: "row"
   }
 });
