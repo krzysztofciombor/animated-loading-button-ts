@@ -3,13 +3,14 @@ import {
   StyleSheet,
   TouchableOpacity,
   ViewStyle,
-  TouchableOpacityProps
+  TouchableOpacityProps,
+  StyleProp
 } from "react-native";
 
 interface ButtonProps {
-  baseStyle?: ViewStyle;
-  pressedStyle?: ViewStyle;
-  disabledStyle?: ViewStyle;
+  baseStyle?: StyleProp<ViewStyle>;
+  pressedStyle?: StyleProp<ViewStyle>;
+  disabledStyle?: StyleProp<ViewStyle>;
 }
 
 interface State {
@@ -42,12 +43,7 @@ export default class BaseButton extends Component<
 
     return (
       <TouchableOpacity
-        style={[
-          styles.button,
-          baseStyle,
-          disabled && disabledStyle,
-          pressed && pressedStyle
-        ]}
+        style={[baseStyle, disabled && disabledStyle, pressed && pressedStyle]}
         onPressIn={this.onPressIn}
         onPressOut={this.onPressOut}
         {...this.props}
@@ -57,12 +53,3 @@ export default class BaseButton extends Component<
     );
   }
 }
-
-const styles = StyleSheet.create({
-  button: {
-    flexGrow: 1,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center"
-  }
-});
