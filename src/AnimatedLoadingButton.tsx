@@ -4,8 +4,8 @@ import posed from "react-native-pose";
 
 interface Props {
   isLoading: boolean;
-  renderButton: () => React.ReactNode;
-  renderLoading: () => React.ReactNode;
+  renderButton: (() => React.ReactNode) | React.ReactNode;
+  renderLoading: (() => React.ReactNode) | React.ReactNode;
   block?: boolean;
 }
 
@@ -43,12 +43,14 @@ export default class AnimatedLoadingButton extends Component<Props> {
             pose={animationState}
             style={{ flexGrow: block ? 1 : 0 }}
           >
-            {renderButton()}
+            {typeof renderButton === "function" ? renderButton() : renderButton}
           </ButtonWrapper>
         </View>
         <View style={{ position: "absolute" }} pointerEvents="none">
           <LoadingWrapper pose={animationState}>
-            {renderLoading()}
+            {typeof renderLoading === "function"
+              ? renderLoading()
+              : renderLoading}
           </LoadingWrapper>
         </View>
       </View>

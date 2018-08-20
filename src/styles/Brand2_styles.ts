@@ -1,5 +1,8 @@
+import { BASE_COLORS } from "./Base_styles";
+
 export const COLORS = {
-  primary: "black"
+  primary: "black",
+  ...BASE_COLORS,
 };
 
 export const styles = {};

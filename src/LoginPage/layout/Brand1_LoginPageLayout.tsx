@@ -9,36 +9,30 @@ import { COLORS, SIZES } from "src/styles/Brand1_styles";
 import { Props } from "./props";
 
 export default class Brand1LoginPageLayout extends React.Component<Props> {
-  renderButton = () => {
-    return (
-      <BaseButton
-        onPress={this.props.onSignInPress}
-        baseStyle={styles.CTA_base}
-        pressedStyle={styles.CTA_pressed}
-        disabledStyle={styles.CTA_disabled}
-        activeOpacity={0.8}
-      >
-        <Text style={styles.CTA_text}>Sign In</Text>
-      </BaseButton>
-    );
-  };
-
-  renderLoading = () => {
-    return <BaseLoadingIndicator color="red" spinnerColor="white" />;
-  };
-
   render() {
     return (
       <View style={styles.container}>
         <View style={styles.row}>
           <AnimatedLoadingButton
-            isLoading={this.props.isLoading}
-            renderButton={this.renderButton}
-            renderLoading={this.renderLoading}
             block
+            isLoading={this.props.isLoading}
+            renderButton={
+              <BaseButton
+                onPress={this.props.onSignInPress}
+                baseStyle={styles.CTA_base}
+                pressedStyle={styles.CTA_pressed}
+                disabledStyle={styles.CTA_disabled}
+                activeOpacity={0.8}
+              >
+                <Text style={styles.CTA_text}>Sign In</Text>
+              </BaseButton>
+            }
+            renderLoading={
+              <BaseLoadingIndicator color="red" spinnerColor="white" />
+            }
           />
         </View>
-        <View style={{ height: 15 }} />
+        <View style={{ height: 20 }} />
         <View style={styles.row}>
           <BaseButton
             baseStyle={styles.FB_base}
@@ -59,7 +53,7 @@ export default class Brand1LoginPageLayout extends React.Component<Props> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: COLORS.white,
     alignItems: "center",
     justifyContent: "center",
     padding: 16
