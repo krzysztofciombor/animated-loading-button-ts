@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import { View, TouchableOpacity } from "react-native";
+import { View } from "react-native";
 import posed from "react-native-pose";
 
 interface Props {
   isLoading: boolean;
   renderButton: () => React.ReactNode;
   renderLoading: () => React.ReactNode;
+  block?: boolean;
 }
 
 type AnimationState = "default" | "loading";
@@ -26,26 +27,31 @@ const LoadingWrapper = posed.View(loadingAnimConfig);
 
 export default class AnimatedLoadingButton extends Component<Props> {
   render() {
-    const { isLoading, renderButton, renderLoading } = this.props;
+    const { isLoading, renderButton, renderLoading, block } = this.props;
     const animationState: AnimationState = isLoading ? "loading" : "default";
-    return isLoading ? renderLoading() : renderButton()
-    // return (
-    //   <View
-    //     style={{
-    //       alignItems: "center",
-    //       justifyContent: "center",
-    //       flex: 1
-    //     }}
-    //   >
-    //     <View style={{ flexDirection: "row", flexGrow: 1 }}>
-    //       <ButtonWrapper pose={animationState}>{renderButton()}</ButtonWrapper>
-    //     </View>
-    //     <View style={{ position: "absolute" }} pointerEvents="none">
-    //       <LoadingWrapper pose={animationState}>
-    //         {renderLoading()}
-    //       </LoadingWrapper>
-    //     </View>
-    //   </View>
-    // );
+    return (
+      <View
+        style={{
+          alignItems: "center",
+          justifyContent: "center",
+          flex: 1,
+          flexDirection: "column"
+        }}
+      >
+        <View style={{ flexDirection: "row", flexGrow: 1 }}>
+          <ButtonWrapper
+            pose={animationState}
+            style={{ flexGrow: block ? 1 : 0 }}
+          >
+            {renderButton()}
+          </ButtonWrapper>
+        </View>
+        <View style={{ position: "absolute" }} pointerEvents="none">
+          <LoadingWrapper pose={animationState}>
+            {renderLoading()}
+          </LoadingWrapper>
+        </View>
+      </View>
+    );
   }
 }

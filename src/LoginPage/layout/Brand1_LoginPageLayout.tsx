@@ -35,6 +35,7 @@ export default class Brand1LoginPageLayout extends React.Component<Props> {
             isLoading={this.props.isLoading}
             renderButton={this.renderButton}
             renderLoading={this.renderLoading}
+            block
           />
         </View>
         <View style={{ height: 15 }} />
