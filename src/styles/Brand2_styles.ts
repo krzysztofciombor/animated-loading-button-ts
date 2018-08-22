@@ -4,5 +4,3 @@ export const COLORS = {
   primary: "black",
   ...BASE_COLORS,
 };
-
-export const styles = {};
