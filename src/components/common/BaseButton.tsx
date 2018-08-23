@@ -1,16 +1,14 @@
 import React, { Component } from "react";
 import {
-  StyleSheet,
   TouchableOpacity,
   ViewStyle,
-  TouchableOpacityProps,
-  StyleProp
+  TouchableOpacityProps
 } from "react-native";
 
 interface ButtonProps {
-  baseStyle?: StyleProp<ViewStyle>;
-  pressedStyle?: StyleProp<ViewStyle>;
-  disabledStyle?: StyleProp<ViewStyle>;
+  baseStyle?: ViewStyle;
+  pressedStyle?: ViewStyle;
+  disabledStyle?: ViewStyle;
 }
 
 interface State {

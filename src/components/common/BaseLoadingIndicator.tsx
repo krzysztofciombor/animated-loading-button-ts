@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ActivityIndicator, View } from "react-native";
+import { ActivityIndicator, View, StyleSheet } from "react-native";
 
 interface Props {
   size: number;
@@ -16,17 +16,25 @@ export default class BaseLoadingIndicator extends Component<Props> {
     const { size, color, spinnerColor } = this.props;
     return (
       <View
-        style={{
-          width: size,
-          height: size,
-          backgroundColor: color,
-          borderRadius: size,
-          alignItems: "center",
-          justifyContent: "center"
-        }}
+        style={[
+          styles.indicator,
+          {
+            width: size,
+            height: size,
+            backgroundColor: color,
+            borderRadius: size
+          }
+        ]}
       >
         <ActivityIndicator color={spinnerColor} />
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  indicator: {
+    alignItems: "center",
+    justifyContent: "center"
+  }
+});

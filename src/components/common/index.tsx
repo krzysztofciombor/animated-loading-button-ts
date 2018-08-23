@@ -1,4 +1,2 @@
-import BaseButton from "./BaseButton";
-import BaseLoadingIndicator from "./BaseLoadingIndicator";
-
-export { BaseButton, BaseLoadingIndicator };
+export { default as BaseButton } from "./BaseButton";
+export { default as BaseLoadingIndicator } from "./BaseLoadingIndicator";
