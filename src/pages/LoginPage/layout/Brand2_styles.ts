@@ -3,7 +3,7 @@ import { COLORS } from "src/styles/Brand2_styles";
 
 export const Brand2_styles = StyleSheet.create({
   CTA_base: {
-    flexGrow: 1,
+    width: "100%",
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: COLORS.primary,

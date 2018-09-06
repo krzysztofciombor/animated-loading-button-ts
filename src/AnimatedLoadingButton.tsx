@@ -74,18 +74,18 @@ export default class AnimatedLoadingButton extends Component<Props, State> {
 
   render() {
     const { renderButton, renderLoading, block } = this.props;
+    console.log("RENDER BUTTON", this._buttonHeight, this._buttonWidth);
     return (
       <View style={styles.container}>
         <Animated.View
           style={{
-            flexGrow: block && !this.state.isAnimating ? 1 : 0,
             overflow: "hidden",
-            width:
-              this._buttonWidth &&
-              this._animationState.interpolate({
-                inputRange: [0, 1],
-                outputRange: [this._buttonWidth, this._loadingWidth || 40]
-              }),
+            width: this._buttonWidth
+              ? this._animationState.interpolate({
+                  inputRange: [0, 1],
+                  outputRange: [this._buttonWidth, this._loadingWidth || 40]
+                })
+              : "100%",
             height:
               this._buttonHeight &&
               this._animationState.interpolate({

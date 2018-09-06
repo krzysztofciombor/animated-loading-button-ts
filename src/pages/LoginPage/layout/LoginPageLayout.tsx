@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, LayoutAnimation } from "react-native";
 
 import AnimatedLoadingButton from "src/AnimatedLoadingButton";
 import { BaseButton, BaseLoadingIndicator } from "src/components/common";
@@ -11,6 +11,12 @@ import { Props, BrandedStyles } from "./props";
 export default class LoginPageLayout extends React.Component<
   Props & InjectedProps<BrandedStyles>
 > {
+  componentWillReceiveProps(nextProps: Props) {
+    if (nextProps.isLoading !== this.props.isLoading) {
+      LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    }
+  }
+
   render() {
     const {
       brandStyles,
@@ -21,6 +27,11 @@ export default class LoginPageLayout extends React.Component<
 
     return (
       <View style={styles.container}>
+        <Text>
+          {!this.props.isLoading
+            ? "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ultricies vehicula ultrices. Etiam commodo massa mauris, sollicitudin porttitor enim suscipit eget."
+            : "Loading"}
+        </Text>
         <View style={styles.row}>
           <AnimatedLoadingButton
             block

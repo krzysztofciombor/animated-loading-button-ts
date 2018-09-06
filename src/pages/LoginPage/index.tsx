@@ -20,7 +20,7 @@ export default class LoginPage extends React.Component<{}, State> {
       this.setState({
         isLoading: false
       });
-    }, 3000);
+    }, 8000);
   };
 
   render() {
