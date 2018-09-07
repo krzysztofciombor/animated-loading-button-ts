@@ -1,5 +1,4 @@
 import React from "react";
-import { View } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { css } from "styled-components";
 import styled from "styled-components/native";
@@ -10,9 +9,9 @@ import { Props } from "./props";
 export const Brand1_Button: React.SFC<Props> = props => (
   <BaseButton baseStyle={baseStyle} disabledStyle={disabledStyle} {...props}>
     <FontAwesome name="facebook-official" color="white" size={24} />
-    <View style={{ flex: 1 }} />
+    <Spacer />
     <FBText>Sign in with Facebook</FBText>
-    <View style={{ flex: 1 }} />
+    <Spacer />
   </BaseButton>
 );
 
@@ -32,6 +31,10 @@ const disabledStyle = css`
 
 const FBText = styled.Text`
   color: white;
-  font-size: 16;
+  font-size: 16px;
   font-weight: 600;
+`;
+
+const Spacer = styled.View`
+  flex: 1;
 `;

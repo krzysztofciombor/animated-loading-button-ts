@@ -1,6 +1,6 @@
 import React from "react";
 
-import LoginPageLayout from "./layout";
+import { LoginPageLayout } from "./layout";
 
 interface State {
   isLoading: boolean;

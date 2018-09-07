@@ -1,5 +1,6 @@
 import React from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { View } from "react-native";
+import styled from "styled-components/native";
 
 import AnimatedLoadingButton from "src/AnimatedLoadingButton";
 import { BaseButton, BaseLoadingIndicator } from "src/components/common";
@@ -14,13 +15,13 @@ interface Props {
   onFbSignInPress: () => void;
 }
 
-export default class LoginPageLayout extends React.Component<Props> {
+export class LoginPageLayout extends React.Component<Props> {
   render() {
     const { isLoading, onSignInPress, onFbSignInPress } = this.props;
 
     return (
-      <View style={styles.container}>
-        <View style={styles.row}>
+      <Container>
+        <Row>
           <AnimatedLoadingButton
             block
             isLoading={isLoading}
@@ -37,25 +38,24 @@ export default class LoginPageLayout extends React.Component<Props> {
               <BaseLoadingIndicator color="red" spinnerColor="white" />
             }
           />
-        </View>
+        </Row>
         <View style={{ height: 20 }} />
-        <View style={styles.row}>
+        <Row>
           <FBLoginButton onPress={onFbSignInPress} />
-        </View>
-      </View>
+        </Row>
+      </Container>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "white",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 16
-  },
-  row: {
-    flexDirection: "row"
-  }
-});
+const Container = styled.View`
+  flex: 1;
+  background-color: white;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+`;
+
+const Row = styled.View`
+  flex-direction: row;
+`;
