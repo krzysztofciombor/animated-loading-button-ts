@@ -1,37 +1,25 @@
 import React from "react";
-import { StyleSheet, View, Text, LayoutAnimation } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 
 import AnimatedLoadingButton from "src/AnimatedLoadingButton";
 import { BaseButton, BaseLoadingIndicator } from "src/components/common";
 import FBLoginButton from "src/components/FBLoginButton";
 
-import { InjectedProps } from "src/brandedStylesHOC";
-import { Props, BrandedStyles } from "./props";
+import { CTAButton } from "./components/CTAButton";
+import { CTAButtonText } from "./components/CTAButtonText";
 
-export default class LoginPageLayout extends React.Component<
-  Props & InjectedProps<BrandedStyles>
-> {
-  componentWillReceiveProps(nextProps: Props) {
-    if (nextProps.isLoading !== this.props.isLoading) {
-      LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-    }
-  }
+interface Props {
+  isLoading: boolean;
+  onSignInPress: () => void;
+  onFbSignInPress: () => void;
+}
 
+export default class LoginPageLayout extends React.Component<Props> {
   render() {
-    const {
-      brandStyles,
-      isLoading,
-      onSignInPress,
-      onFbSignInPress
-    } = this.props;
+    const { isLoading, onSignInPress, onFbSignInPress } = this.props;
 
     return (
       <View style={styles.container}>
-        <Text>
-          {!this.props.isLoading
-            ? "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ultricies vehicula ultrices. Etiam commodo massa mauris, sollicitudin porttitor enim suscipit eget."
-            : "Loading"}
-        </Text>
         <View style={styles.row}>
           <AnimatedLoadingButton
             block
@@ -39,12 +27,10 @@ export default class LoginPageLayout extends React.Component<
             renderButton={
               <BaseButton
                 onPress={onSignInPress}
-                baseStyle={brandStyles.CTA_base}
-                pressedStyle={brandStyles.CTA_pressed}
-                disabledStyle={brandStyles.CTA_disabled}
+                baseStyle={CTAButton}
                 activeOpacity={0.8}
               >
-                <Text style={brandStyles.CTA_text}>Sign In</Text>
+                <CTAButtonText>Sign In</CTAButtonText>
               </BaseButton>
             }
             renderLoading={

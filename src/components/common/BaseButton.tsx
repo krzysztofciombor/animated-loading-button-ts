@@ -1,19 +1,27 @@
 import React, { Component } from "react";
-import {
-  TouchableOpacity,
-  ViewStyle,
-  TouchableOpacityProps
-} from "react-native";
+import { TouchableOpacity, TouchableOpacityProps } from "react-native";
+import styled from "styled-components/native";
+import { InterpolationValue } from "styled-components";
 
 interface ButtonProps {
-  baseStyle?: ViewStyle;
-  pressedStyle?: ViewStyle;
-  disabledStyle?: ViewStyle;
+  baseStyle?: InterpolationValue[];
+  pressedStyle?: InterpolationValue[];
+  disabledStyle?: InterpolationValue[];
 }
 
 interface State {
   pressed: boolean;
 }
+
+const ButtonWrapper = styled<
+  ButtonProps & TouchableOpacityProps & { pressed: boolean }
+>(({ pressed, baseStyle, pressedStyle, disabledStyle, ...rest }) => (
+  <TouchableOpacity {...rest} />
+))`
+  ${props => props.baseStyle};
+  ${props => props.disabled && props.disabledStyle};
+  ${props => props.pressed && props.pressedStyle};
+`;
 
 export default class BaseButton extends Component<
   ButtonProps & TouchableOpacityProps,
@@ -36,18 +44,17 @@ export default class BaseButton extends Component<
   };
 
   render() {
-    const { disabled, baseStyle, disabledStyle, pressedStyle } = this.props;
     const { pressed } = this.state;
 
     return (
-      <TouchableOpacity
-        style={[baseStyle, disabled && disabledStyle, pressed && pressedStyle]}
+      <ButtonWrapper
         onPressIn={this.onPressIn}
         onPressOut={this.onPressOut}
+        pressed={pressed}
         {...this.props}
       >
         {this.props.children}
-      </TouchableOpacity>
+      </ButtonWrapper>
     );
   }
 }
