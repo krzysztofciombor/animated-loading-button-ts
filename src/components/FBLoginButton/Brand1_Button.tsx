@@ -1,39 +1,40 @@
 import React from "react";
-import { Text, StyleSheet, View } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
+import { css } from "styled-components";
+import styled from "styled-components/native";
 
 import BaseButton from "src/components/common/BaseButton";
 import { Props } from "./props";
 
 export const Brand1_Button: React.SFC<Props> = props => (
-  <BaseButton
-    baseStyle={styles.base}
-    disabledStyle={styles.disabled}
-    {...props}
-  >
+  <BaseButton baseStyle={baseStyle} disabledStyle={disabledStyle} {...props}>
     <FontAwesome name="facebook-official" color="white" size={24} />
-    <View style={{ flex: 1 }} />
-    <Text style={styles.text}>Sign in with Facebook</Text>
-    <View style={{ flex: 1 }} />
+    <Spacer />
+    <FBText>Sign in with Facebook</FBText>
+    <Spacer />
   </BaseButton>
 );
 
-const styles = StyleSheet.create({
-  base: {
-    backgroundColor: "blue",
-    padding: 10,
-    borderRadius: 2,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    flexGrow: 1
-  },
-  disabled: {
-    backgroundColor: "lightblue"
-  },
-  text: {
-    color: "white",
-    fontSize: 16,
-    fontWeight: "600"
-  }
-});
+const baseStyle = css`
+  background-color: blue;
+  padding: 10px;
+  border-radius: 2;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+`;
+
+const disabledStyle = css`
+  background-color: lightblue;
+`;
+
+const FBText = styled.Text`
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+`;
+
+const Spacer = styled.View`
+  flex: 1;
+`;

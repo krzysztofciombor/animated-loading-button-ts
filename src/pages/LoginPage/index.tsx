@@ -1,6 +1,6 @@
 import React from "react";
 
-import LoginPageLayout from "./layout";
+import { LoginPageLayout } from "./layout";
 
 interface State {
   isLoading: boolean;
@@ -20,7 +20,7 @@ export default class LoginPage extends React.Component<{}, State> {
       this.setState({
         isLoading: false
       });
-    }, 8000);
+    }, 4000);
   };
 
   render() {
