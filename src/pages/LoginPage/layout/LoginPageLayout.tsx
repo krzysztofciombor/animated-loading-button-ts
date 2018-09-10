@@ -5,12 +5,15 @@ import AnimatedLoadingButton from "src/AnimatedLoadingButton";
 import { BaseButton, BaseLoadingIndicator } from "src/components/common";
 import FBLoginButton from "src/components/FBLoginButton";
 
-import { InjectedProps } from "src/brandedStylesHOC";
-import { Props, BrandedStyles } from "./props";
+import { brandStyles } from "./brandedStyles";
 
-export default class LoginPageLayout extends React.Component<
-  Props & InjectedProps<BrandedStyles>
-> {
+interface Props {
+  isLoading: boolean;
+  onSignInPress: () => void;
+  onFbSignInPress: () => void;
+}
+
+export default class LoginPageLayout extends React.Component<Props> {
   componentWillReceiveProps(nextProps: Props) {
     if (nextProps.isLoading !== this.props.isLoading) {
       LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
@@ -18,12 +21,7 @@ export default class LoginPageLayout extends React.Component<
   }
 
   render() {
-    const {
-      brandStyles,
-      isLoading,
-      onSignInPress,
-      onFbSignInPress
-    } = this.props;
+    const { isLoading, onSignInPress, onFbSignInPress } = this.props;
 
     return (
       <View style={styles.container}>
